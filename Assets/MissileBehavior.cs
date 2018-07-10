@@ -26,7 +26,7 @@ public class MissileBehavior : MonoBehaviour {
         startPos = this.transform.position;
 
         startTime = Time.time;
-        speed = 5.0f;
+        speed = 10.0f;
         
         journeyLength = Vector3.Distance(startPos, TargetPos);
     }

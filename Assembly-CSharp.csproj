@@ -61,10 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\enemyBehavior.cs" />
     <Compile Include="Assets\MissileBehavior.cs" />
     <Compile Include="Assets\missileExplosionBehavior.cs" />
     <Compile Include="Assets\missileShot.cs" />
     <Compile Include="Assets\missileTubeBehavior.cs" />
+    <Compile Include="Assets\spawnerBehavior.cs" />
     <Compile Include="Assets\targetBehavior.cs" />
     <Compile Include="Assets\targetMarkerBehavior.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
