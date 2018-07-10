@@ -12,5 +12,9 @@ public class enemyBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         this.transform.position += new Vector3(0.0f, -0.05f, 0.0f);
+
+        if (this.transform.position.y < 0)
+            Destroy(this.gameObject);
+        //TODO implement graceful destruction
     }
 }
