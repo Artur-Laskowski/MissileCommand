@@ -7,11 +7,9 @@ public class missileShot : MonoBehaviour {
     public GameObject missile;
     public GameObject missileLauncher;
 
-    private List<GameObject> spawnedMissiles;
-
 	// Use this for initialization
 	void Start () {
-        spawnedMissiles = new List<GameObject>();
+
 	}
 	
 	// Update is called once per frame
@@ -19,15 +17,14 @@ public class missileShot : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             SpawnMissile();
         }
-
-        spawnedMissiles.ForEach((GameObject m) => m.transform.position += new Vector3(0, 0.1f, 0));
     }
 
     //void UpdateMissile
 
     void SpawnMissile()
     {
-        var newMissile = Instantiate(missile, transform.position, Quaternion.identity);
-        spawnedMissiles.Add(newMissile);
+        GameObject o = Instantiate(missile, transform.position, missileLauncher.transform.rotation);
+        //MissileBehavior mb = o.GetComponent<MissileBehavior>();
+        //mb.TargetPos = GameObject.Find("target").transform.position;
     }
 }

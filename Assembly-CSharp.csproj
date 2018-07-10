@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MissileBehavior.cs" />
+    <Compile Include="Assets\missileExplosionBehavior.cs" />
     <Compile Include="Assets\missileShot.cs" />
     <Compile Include="Assets\missileTubeBehavior.cs" />
     <Compile Include="Assets\targetBehavior.cs" />

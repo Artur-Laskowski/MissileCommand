@@ -303,7 +303,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -383,6 +383,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1241387264 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1503024644203930, guid: 421154ce7ddc67349bef0007979185e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1689954742}
 --- !u!4 &1241387267 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4015750508575408, guid: 421154ce7ddc67349bef0007979185e1,
@@ -397,11 +402,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4015750508575408, guid: 421154ce7ddc67349bef0007979185e1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4015750508575408, guid: 421154ce7ddc67349bef0007979185e1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4015750508575408, guid: 421154ce7ddc67349bef0007979185e1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -427,7 +432,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114674151897897898, guid: 421154ce7ddc67349bef0007979185e1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 421154ce7ddc67349bef0007979185e1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1795799505
@@ -455,10 +461,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795799505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9a7210073a1824c8dbe5e44bae0014, type: 3}
+  m_Script: {fileID: 11500000, guid: 939bafc9bddfbc549a51677cec63d413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 110773049}
+  missile: {fileID: 1970843663978920, guid: be9279cc41ef8cc46a388b50f7f4fec2, type: 2}
+  missileLauncher: {fileID: 1795799505}
 --- !u!212 &1795799507
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -493,7 +500,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0.33355236, b: 1, a: 1}
   m_FlipX: 0
@@ -511,9 +518,52 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1795799505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.22000001, z: 0}
-  m_LocalScale: {x: 0.4, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 2116787976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2116787975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2116787976}
+  - component: {fileID: 2116787977}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116787976
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116787975}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 2, z: 1}
+  m_Children:
+  - {fileID: 1795799508}
   m_Father: {fileID: 1241387267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116787977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116787975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9a7210073a1824c8dbe5e44bae0014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 110773049}
+  parentLauncher: {fileID: 1241387264}

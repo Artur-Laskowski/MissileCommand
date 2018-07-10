@@ -5,10 +5,12 @@ using UnityEngine;
 public class missileTubeBehavior : MonoBehaviour {
 
     public GameObject target;
+    public GameObject parentLauncher;
 
 	// Use this for initialization
 	void Start () {
-		
+        this.transform.SetParent(parentLauncher.transform);
+       
 	}
 	
 	// Update is called once per frame
