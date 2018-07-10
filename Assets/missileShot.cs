@@ -6,6 +6,7 @@ public class missileShot : MonoBehaviour {
 
     public GameObject missile;
     public GameObject missileLauncher;
+    public GameObject targetMarker;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,9 @@ public class missileShot : MonoBehaviour {
     void SpawnMissile()
     {
         GameObject o = Instantiate(missile, transform.position, missileLauncher.transform.rotation);
-        //MissileBehavior mb = o.GetComponent<MissileBehavior>();
-        //mb.TargetPos = GameObject.Find("target").transform.position;
+        Transform targetTransform = GameObject.Find("target").transform;
+        GameObject targetMarkerObject = Instantiate(targetMarker, targetTransform.position, Quaternion.identity);
+        MissileBehavior mb = o.GetComponent<MissileBehavior>();
+        mb.TargetMarkerObject = targetMarkerObject;
     }
 }

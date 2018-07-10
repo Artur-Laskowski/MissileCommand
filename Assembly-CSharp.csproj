@@ -66,6 +66,7 @@
     <Compile Include="Assets\missileShot.cs" />
     <Compile Include="Assets\missileTubeBehavior.cs" />
     <Compile Include="Assets\targetBehavior.cs" />
+    <Compile Include="Assets\targetMarkerBehavior.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>

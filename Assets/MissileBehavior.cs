@@ -5,8 +5,9 @@ using UnityEngine;
 public class MissileBehavior : MonoBehaviour {
     
     public GameObject missileExplosion;
-    private Vector3 _targetPos;
     public Vector3 TargetPos { private get; set; }
+    
+    public GameObject TargetMarkerObject { get; set; }
 
     private Vector3 startPos;
 
@@ -42,14 +43,14 @@ public class MissileBehavior : MonoBehaviour {
         this.transform.position = Vector3.Lerp(startPos, TargetPos, fracJourney);
 
         var distance = Vector3.Distance(this.transform.position, TargetPos);
-
-        print(distance);
+        
         if (distance < 0.1f)
             Detonate();
     }
 
     void Detonate() {
         Destroy(gameObject);
+        Destroy(TargetMarkerObject);
         Instantiate(missileExplosion, transform.position, Quaternion.identity);
     }
 }
