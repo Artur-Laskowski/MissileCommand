@@ -12,15 +12,20 @@ public class MissileTubeBehavior : MonoBehaviour {
     public GameObject missile;
     public GameObject targetMarker;
 
-    public float LastShotTime { get; set; }
-    public int RoundsPerMinute { get; set; }
+    private int roundsPerMinute;
+    private float inaccuracyOffset;
+    private float inaccuracyDistance;
+
+    private float lastShotTime;
 
     // Use this for initialization
     void Start () {
         this.transform.SetParent(parentLauncher.transform);
 
-        LastShotTime = Time.time;
-        RoundsPerMinute = 6000;
+        roundsPerMinute = Settings.Instance.DefaultRoundsPerMinute;
+        inaccuracyOffset = Settings.Instance.DefaultInaccuracyOffset;
+        inaccuracyDistance = Settings.Instance.InaccuracyDistance;
+        lastShotTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -36,11 +41,15 @@ public class MissileTubeBehavior : MonoBehaviour {
     }
 
     bool CanSpawnMissile() {
-        float interval = 60.0f / RoundsPerMinute;
-        return Time.time > LastShotTime + interval;
+        float interval = 60.0f / roundsPerMinute;
+        return Time.time > lastShotTime + interval;
     }
 
     void HandleUserInput() {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+            lastShotTime = Time.time - Random.Range(0.0f, 60.0f / roundsPerMinute);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) {
             if (CanSpawnMissile()) {
                 SpawnMissile();
@@ -53,12 +62,23 @@ public class MissileTubeBehavior : MonoBehaviour {
         MissileBehavior mb = missileObject.GetComponent<MissileBehavior>();
         mb.TargetMarkerObject = CreateTargetMarker();
 
-        LastShotTime = Time.time;
+        lastShotTime = Time.time;
     }
 
     GameObject CreateTargetMarker() {
-        Transform targetTransform = GameObject.Find("target").transform;
-        GameObject targetMarkerObject = Instantiate(targetMarker, targetTransform.position, Quaternion.identity);
+        Vector3 targetPosition = GameObject.Find("target").transform.position;
+        var distance = Vector3.Distance(muzzle.position, targetPosition);
+        float inaccuracyOffsetAtDistance = inaccuracyOffset * distance / inaccuracyDistance;
+        targetPosition = RandomizePosition(targetPosition, inaccuracyOffsetAtDistance, inaccuracyOffsetAtDistance);
+
+        GameObject targetMarkerObject = Instantiate(targetMarker, targetPosition, Quaternion.identity);
         return targetMarkerObject;
+    }
+
+    Vector3 RandomizePosition(Vector3 input, float xMaxOffset, float yMaxOffset) {
+        float xOffset = -xMaxOffset / 2.0f + Random.Range(0, xMaxOffset);
+        float yOffset = -yMaxOffset / 2.0f + Random.Range(0, yMaxOffset);
+        input = input + new Vector3(xOffset, yOffset, 0);
+        return input;
     }
 }

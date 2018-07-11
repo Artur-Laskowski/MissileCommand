@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 public class MissileExplosionBehavior : MonoBehaviour {
-    
 
     private float maxSize;
     private float startTime;
@@ -11,18 +10,17 @@ public class MissileExplosionBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        maxSize = 10.0f;
+        maxSize = Settings.Instance.DefaultMaxExplosionSize;
         startTime = Time.time;
-        duration = 1.0f;
-        collapseRatio = 1.0f / 4.0f;
-        Destroy(this.gameObject, duration);
-
+        duration = Settings.Instance.DefaultExplosionDuration;
+        collapseRatio = Settings.Instance.DefaultExplosionCollapseRate;
         this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+
+        Destroy(this.gameObject, duration);
     }
 	
 	// Update is called once per frame
 	void Update () {
-
         var size = GetCurrentExplosionSize();
         SetExplosionVisualSize(size);
         SetExplosionHitboxSize(size);
