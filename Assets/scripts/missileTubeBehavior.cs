@@ -47,7 +47,10 @@ public class MissileTubeBehavior : MonoBehaviour {
 
     void HandleUserInput() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
-            lastShotTime = Time.time - Random.Range(0.0f, 60.0f / roundsPerMinute);
+            if (CanSpawnMissile()) {
+                SpawnMissile();
+                lastShotTime += Random.Range(0.0f, 60.0f / roundsPerMinute);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) {

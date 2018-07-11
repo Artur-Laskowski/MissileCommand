@@ -73,6 +73,8 @@ public class MissileExplosionBehavior : MonoBehaviour {
         //Destroy(enemy);
         //IncreaseScore();
 
+        if (enemy == null)
+            return;
         var eb = enemy.GetComponent<EnemyBehavior>();
         eb.ExplodeEnemy();
     }
