@@ -61,15 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\EnemyBehavior.cs" />
-    <Compile Include="Assets\scripts\MissileBehavior.cs" />
-    <Compile Include="Assets\scripts\MissileExplosionBehavior.cs" />
-    <Compile Include="Assets\scripts\MissileTubeBehavior.cs" />
-    <Compile Include="Assets\scripts\ScoreHandlerBehavior.cs" />
-    <Compile Include="Assets\scripts\Settings.cs" />
-    <Compile Include="Assets\scripts\SpawnerBehavior.cs" />
-    <Compile Include="Assets\scripts\TargetBehavior.cs" />
-    <Compile Include="Assets\scripts\TargetMarkerBehavior.cs" />
+    <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
+    <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
+    <Compile Include="Assets\Scripts\MissileBehavior.cs" />
+    <Compile Include="Assets\Scripts\MissileExplosionBehavior.cs" />
+    <Compile Include="Assets\Scripts\MissileTubeBehavior.cs" />
+    <Compile Include="Assets\Scripts\ScoreHandlerBehavior.cs" />
+    <Compile Include="Assets\Scripts\Settings.cs" />
+    <Compile Include="Assets\Scripts\SpawnerBehavior.cs" />
+    <Compile Include="Assets\Scripts\TargetBehavior.cs" />
+    <Compile Include="Assets\Scripts\TargetMarkerBehavior.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
