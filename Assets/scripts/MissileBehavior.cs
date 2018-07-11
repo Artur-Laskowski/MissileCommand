@@ -13,6 +13,8 @@ public class MissileBehavior : MonoBehaviour {
 
     public float speed;
 
+    private float detonationDistance;
+
     // Time when the movement started.
     private float startTime;
 
@@ -21,13 +23,15 @@ public class MissileBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        TargetPos = GameObject.Find("target").transform.position;
+        TargetPos = TargetMarkerObject.transform.position;
         Destroy(gameObject, 5);
 
         startPos = this.transform.position;
         startTime = Time.time;
-        speed = 10.0f;
+        speed = Settings.Instance.DefaultMissileSpeed;
         journeyLength = Vector3.Distance(startPos, TargetPos);
+
+        detonationDistance = Settings.Instance.DefaultDetonationDistance;
     }
 	
 	// Update is called once per frame
@@ -53,6 +57,6 @@ public class MissileBehavior : MonoBehaviour {
 
     bool IsInRangeOfTarget() {
         var distance = Vector3.Distance(this.transform.position, TargetPos);
-        return distance < 0.1f;
+        return distance < detonationDistance;
     }
 }

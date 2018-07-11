@@ -20,7 +20,7 @@ public class TargetBehavior : MonoBehaviour {
     }
 
     Vector3 GetNewCursorLocation() {
-        var speed = SettingsHandler.Instance.TargetMovementSpeed;
+        var speed = Settings.Instance.TargetMovementSpeed;
 
         Vector3 position = new Vector3();
         if (IsKeyboardInputMethod) {

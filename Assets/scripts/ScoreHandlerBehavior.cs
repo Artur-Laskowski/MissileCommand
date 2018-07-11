@@ -35,12 +35,14 @@ public class ScoreHandlerBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
         score = 0;
-        health = 100;
+        health = Settings.Instance.MaxHealth;
 
         Instance = this;
 
-        //QualitySettings.vSyncCount = 0;
-        //Application.targetFrameRate = 5;
+        if (Settings.Instance.IsLowFrameMode) {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 5;
+        }
     }
 	
 	// Update is called once per frame
