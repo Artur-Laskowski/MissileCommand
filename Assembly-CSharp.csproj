@@ -66,14 +66,15 @@
     <Compile Include="Assets\missileExplosionBehavior.cs" />
     <Compile Include="Assets\missileShot.cs" />
     <Compile Include="Assets\missileTubeBehavior.cs" />
+    <Compile Include="Assets\ScoreHandlerBehavior.cs" />
     <Compile Include="Assets\spawnerBehavior.cs" />
     <Compile Include="Assets\targetBehavior.cs" />
     <Compile Include="Assets\targetMarkerBehavior.cs" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

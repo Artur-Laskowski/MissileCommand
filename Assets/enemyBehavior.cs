@@ -13,8 +13,17 @@ public class enemyBehavior : MonoBehaviour {
 	void Update () {
         this.transform.position += new Vector3(0.0f, -0.05f, 0.0f);
 
-        if (this.transform.position.y < 0)
+        if (this.transform.position.y < 0) {
+            DecreaseHealth();
             Destroy(this.gameObject);
+        }
         //TODO implement graceful destruction
+    }
+
+    void DecreaseHealth() {
+        var scoreHandler = GameObject.FindObjectOfType<ScoreHandlerBehavior>();
+        var test = GameObject.FindObjectsOfType<ScoreHandlerBehavior>();
+        var shb = scoreHandler.GetComponent<ScoreHandlerBehavior>();
+        shb.ChangeHealth(-1);
     }
 }

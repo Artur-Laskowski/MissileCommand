@@ -20,14 +20,16 @@ public class missileShot : MonoBehaviour {
         }
     }
 
-    //void UpdateMissile
-
     void SpawnMissile()
     {
-        GameObject o = Instantiate(missile, transform.position, missileLauncher.transform.rotation);
+        GameObject missileObject = Instantiate(missile, transform.position, missileLauncher.transform.rotation);
+        MissileBehavior mb = missileObject.GetComponent<MissileBehavior>();
+        mb.TargetMarkerObject = CreateTargetMarker();
+    }
+
+    GameObject CreateTargetMarker() {
         Transform targetTransform = GameObject.Find("target").transform;
         GameObject targetMarkerObject = Instantiate(targetMarker, targetTransform.position, Quaternion.identity);
-        MissileBehavior mb = o.GetComponent<MissileBehavior>();
-        mb.TargetMarkerObject = targetMarkerObject;
+        return targetMarkerObject;
     }
 }
