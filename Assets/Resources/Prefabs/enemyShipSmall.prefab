@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4342514253504304}
   - component: {fileID: 212875362224580402}
-  - component: {fileID: 114005498059933076}
   - component: {fileID: 58251785587494076}
+  - component: {fileID: 50822868212475174}
+  - component: {fileID: 114545348100230564}
   m_Layer: 0
-  m_Name: enemyShip
+  m_Name: enemyShipSmall
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,6 +43,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50822868212475174
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505075222119066}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58251785587494076
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -57,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114005498059933076
+--- !u!114 &114545348100230564
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505075222119066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0103eada0b65f742a763156b1297f19, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da37b9af684ac14a9c739fb7b18290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212875362224580402

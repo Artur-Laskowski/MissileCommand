@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings : MonoBehaviour {
+public class Settings {
     
     public float TargetMovementSpeed { get; private set; }
     public float EnemySpawnsPerMinute { get; private set; }
@@ -26,7 +26,8 @@ public class Settings : MonoBehaviour {
     static public Settings Instance {
         get {
             if (_instance == null)
-                throw new System.Exception("Tried to access singleton without instance");
+                _instance = new Settings();
+                //throw new System.Exception("Tried to access singleton without instance");
             return _instance;
         }
         private set {
@@ -34,22 +35,15 @@ public class Settings : MonoBehaviour {
                 _instance = value;
             }
             else {
-                Destroy(value.gameObject);
                 throw new System.Exception("Second instance of singleton detected");
             }
         }
     }
 
     // Use this for initialization
-    void Start () {
-        Instance = this;
+    Settings () {
         InitializeWithDefaults();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void InitializeWithDefaults() {
         TargetMovementSpeed = 0.4f;
@@ -57,15 +51,15 @@ public class Settings : MonoBehaviour {
         MaxHealth = 100;
         IsLowFrameMode = false;
 
-        DefaultRoundsPerMinute = 100;
-        DefaultInaccuracyOffset = 3.0f;
+        DefaultRoundsPerMinute = 20;
+        DefaultInaccuracyOffset = 2.0f;
         InaccuracyDistance = 10.0f;
 
         DefaultMaxExplosionSize = 10.0f;
         DefaultExplosionDuration = 1.0f;
         DefaultExplosionCollapseRate = 1.0f / 4.0f;
 
-        DefaultMissileSpeed = 10.0f;
+        DefaultMissileSpeed = 20.0f;
         DefaultDetonationDistance = 0.1f;
 
         IsKeyboardInputMethod = false;

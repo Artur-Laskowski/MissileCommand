@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     private Vector3 startPos;
     private Vector3 endPos;
 
-    ScoreHandlerBehavior scoreHandler;
+    protected ScoreHandlerBehavior scoreHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -39,20 +39,30 @@ public class EnemyBehavior : MonoBehaviour {
         this.transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
     }
 
-    bool IsCollidingWithGround() {
+    protected bool IsCollidingWithGround() {
         return this.transform.position.y < 0;
     }
 
-    void DestroyEnemy() {
+    protected void DestroyEnemy() {
         Destroy(this.gameObject);
     }
 
-    public void ExplodeEnemy() {
+    virtual public void ExplodeEnemy() {
+        for (int i = 0; i < 5; i++)
+            SpawnSmallEnemy(this.transform.position + new Vector3(Random.Range(-2, 2), 2.0f, 0));
+
         DestroyEnemy();
         scoreHandler.ChangeScore(+1);
     }
 
-    void DecreaseHealth() {
+    protected void DecreaseHealth() {
         scoreHandler.ChangeHealth(-1);
+    }
+
+
+    void SpawnSmallEnemy(Vector3 pos) {
+        GameObject prefab = Resources.Load<GameObject>("Prefabs/enemyShipSmall");
+        GameObject o = Instantiate(prefab, pos, Quaternion.identity);
+        o.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-500,500), Random.Range(200,600)));
     }
 }
