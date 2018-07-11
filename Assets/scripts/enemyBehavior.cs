@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyBehavior : MonoBehaviour {
+public class EnemyBehavior : MonoBehaviour {
 
     private float startTime;
     private float speed;
     private float journeyLength;
     private Vector3 startPos;
     private Vector3 endPos;
+
+    ScoreHandlerBehavior scoreHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,8 @@ public class enemyBehavior : MonoBehaviour {
         startPos = this.transform.position;
         endPos  = new Vector3(Random.Range(-20.0f, 20.0f), -1, 0);
         journeyLength = Vector3.Distance(startPos, endPos);
+
+        scoreHandler = ScoreHandlerBehavior.Instance;
     }
 	
 	// Update is called once per frame
@@ -30,27 +34,25 @@ public class enemyBehavior : MonoBehaviour {
     }
 
     void Move() {
-
         float distCovered = (Time.time - startTime) * speed;
         float fracJourney = distCovered / journeyLength;
         this.transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
-
-        //this.transform.position += new Vector3(0.0f, 1.0f, 0.0f) * -5.0f * Time.deltaTime;
     }
 
     bool IsCollidingWithGround() {
         return this.transform.position.y < 0;
     }
 
-    public void DestroyEnemy() {
+    void DestroyEnemy() {
         Destroy(this.gameObject);
+    }
 
-
+    public void ExplodeEnemy() {
+        DestroyEnemy();
+        scoreHandler.ChangeScore(+1);
     }
 
     void DecreaseHealth() {
-        var scoreHandler = GameObject.FindObjectOfType<ScoreHandlerBehavior>();
-        var shb = scoreHandler.GetComponent<ScoreHandlerBehavior>();
-        shb.ChangeHealth(-1);
+        scoreHandler.ChangeHealth(-1);
     }
 }

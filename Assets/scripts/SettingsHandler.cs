@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerBehavior : MonoBehaviour {
+public class SettingsHandler : MonoBehaviour {
 
-    public Transform enemy;
+    private float speed;
+    public float TargetMovementSpeed { get; private set; }
 
-    static private SpawnerBehavior _instance;
-    static public SpawnerBehavior Instance {
+
+    static private SettingsHandler _instance;
+    static public SettingsHandler Instance {
         get {
+            if (_instance == null)
+                throw new System.Exception("Tried to access singleton without instance");
             return _instance;
         }
         private set {
@@ -24,15 +28,16 @@ public class SpawnerBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //enemy = FindObjectsOfTypeIncludingAssets()
         Instance = this;
-	}
+        InitializeWithDefaults();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Random.Range(0, 100) < 2) {
-            Instantiate(enemy, new Vector3(Random.Range(-20, 20), 25.0f, 0), Quaternion.identity);
-            
-        }
+		
 	}
+
+    void InitializeWithDefaults() {
+        TargetMovementSpeed = 0.4f;
+    }
 }

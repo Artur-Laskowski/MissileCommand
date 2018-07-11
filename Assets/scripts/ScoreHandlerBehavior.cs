@@ -17,6 +17,8 @@ public class ScoreHandlerBehavior : MonoBehaviour {
     static private ScoreHandlerBehavior _instance;
     static public ScoreHandlerBehavior Instance {
         get {
+            if (_instance == null)
+                throw new System.Exception("Tried to access singleton without instance");
             return _instance;
         }
         private set {

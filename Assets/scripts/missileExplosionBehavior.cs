@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class missileExplosionBehavior : MonoBehaviour {
+public class MissileExplosionBehavior : MonoBehaviour {
     
 
     private float maxSize;
@@ -72,15 +72,15 @@ public class missileExplosionBehavior : MonoBehaviour {
     }
 
     void Explode(GameObject enemy) {
-        Destroy(enemy);
+        //Destroy(enemy);
+        //IncreaseScore();
 
-        IncreaseScore();
+        var eb = enemy.GetComponent<EnemyBehavior>();
+        eb.ExplodeEnemy();
     }
 
     void IncreaseScore() {
-        var scoreHandler = GameObject.FindObjectOfType<ScoreHandlerBehavior>();
-
-        var shb = scoreHandler.GetComponent<ScoreHandlerBehavior>();
-        shb.ChangeScore(1);
+        var scoreHandler = ScoreHandlerBehavior.Instance;
+        scoreHandler.ChangeScore(1);
     }
 }

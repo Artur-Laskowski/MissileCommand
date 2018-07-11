@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class targetBehavior : MonoBehaviour {
+public class TargetBehavior : MonoBehaviour {
 
-    private float speed;
 
     private bool IsKeyboardInputMethod;
 
 	// Use this for initialization
 	void Start () {
-        speed = 0.4f;
         IsKeyboardInputMethod = false;
 	}
 	
@@ -22,6 +20,8 @@ public class targetBehavior : MonoBehaviour {
     }
 
     Vector3 GetNewCursorLocation() {
+        var speed = SettingsHandler.Instance.TargetMovementSpeed;
+
         Vector3 position = new Vector3();
         if (IsKeyboardInputMethod) {
             Vector3 transform = new Vector3();
