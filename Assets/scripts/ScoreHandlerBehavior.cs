@@ -13,21 +13,33 @@ public class ScoreHandlerBehavior : MonoBehaviour {
     private int score;
     private int health;
 
-    static public ScoreHandlerBehavior Instance { get; private set; }
+
+    static private ScoreHandlerBehavior _instance;
+    static public ScoreHandlerBehavior Instance {
+        get {
+            return _instance;
+        }
+        private set {
+            if (_instance == null) {
+                _instance = value;
+            }
+            else {
+                Destroy(value.gameObject);
+                throw new System.Exception("Second instance of singleton detected");
+            }
+        }
+    }
 
     // Use this for initialization
     void Start () {
         score = 0;
         health = 100;
 
-        if (Instance == null) {
-            Instance = this;
-        }
-        else {
-            Destroy(this.gameObject);
-            throw new System.Exception("Second instance of singleton detected");
-        }
-	}
+        Instance = this;
+
+        //QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 5;
+    }
 	
 	// Update is called once per frame
 	void Update () {
