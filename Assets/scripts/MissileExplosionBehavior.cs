@@ -80,7 +80,7 @@ public class MissileExplosionBehavior : MonoBehaviour {
     }
 
     void IncreaseScore() {
-        var scoreHandler = ScoreHandlerBehavior.Instance;
+        var scoreHandler = ScoreHandler.Instance;
         scoreHandler.ChangeScore(1);
     }
 }

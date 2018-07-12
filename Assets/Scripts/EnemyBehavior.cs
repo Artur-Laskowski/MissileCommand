@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     private Vector3 startPos;
     private Vector3 endPos;
 
-    protected ScoreHandlerBehavior scoreHandler;
+    protected ScoreHandler scoreHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class EnemyBehavior : MonoBehaviour {
         endPos  = new Vector3(Random.Range(-20.0f, 20.0f), -1, 0);
         journeyLength = Vector3.Distance(startPos, endPos);
 
-        scoreHandler = ScoreHandlerBehavior.Instance;
+        scoreHandler = ScoreHandler.Instance;
     }
 	
 	// Update is called once per frame
@@ -48,6 +48,7 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     protected void DestroyEnemy() {
+        ScoreHandler.Instance.ChangeEnemyCount(-1);
         Destroy(this.gameObject);
     }
 
