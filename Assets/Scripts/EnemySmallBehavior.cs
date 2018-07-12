@@ -2,33 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySmallBehavior : EnemyBehavior {
+public class EnemySmallBehavior : EnemyBaseBehavior {
 
-    private float creationTime;
     private float destructibleAfter;
 
 	// Use this for initialization
-	void Start () {
-        scoreHandler = ScoreHandler.Instance;
-        creationTime = Time.time;
+	protected new void Start () {
+        base.Start();
+
+        scoreValue = 1;
+        healthValue = 1;
+
         destructibleAfter = Settings.Instance.EnemySmallDestructibleAfter;
-	}
+    }
 	
 	// Update is called once per frame
-	void Update () {
-        if (IsCollidingWithGround()) {
-            DecreaseHealth();
-            DestroyEnemy();
-        }
+	protected new void Update () {
+        base.Update();
     }
 
-    public override void ExplodeEnemy() {
-        if (scoreHandler == null)
-            return;
-
+    public override void Explode() {
         if (IsDestructible()) {
-            DestroyEnemy();
-            scoreHandler.ChangeScore(+1);
+            base.Explode();
         }
     }
 

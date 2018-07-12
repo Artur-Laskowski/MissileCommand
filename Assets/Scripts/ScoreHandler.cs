@@ -16,7 +16,6 @@ public class ScoreHandler : MonoBehaviour {
     
     private int score;
     private int health;
-    private int enemyCount;
 
     static private ScoreHandler _instance;
     static public ScoreHandler Instance {
@@ -42,8 +41,6 @@ public class ScoreHandler : MonoBehaviour {
         health = Settings.Instance.MaxHealth;
         ChangeHealth(0);
 
-        enemyCount = 10; //TODO
-
         Instance = this;
 
         if (Settings.Instance.IsLowFrameMode) {
@@ -59,8 +56,10 @@ public class ScoreHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (CanShowEndScreen()) {
+            StartCoroutine(ShowRoundEndScreen());
+        }
+    }
 
     public int GetScore() {
         return score;
@@ -87,20 +86,6 @@ public class ScoreHandler : MonoBehaviour {
         }
     }
 
-    public int GetEnemyCount() {
-        return enemyCount;
-    }
-
-    public void ChangeEnemyCount(int change) {
-        if (enemyCount >= change) {
-            enemyCount += change;
-        }
-
-        if (enemyCount == 0) {
-            canvasObject.SetActive(true);
-        }
-    }
-
     public IEnumerator EndGame() {
         //show text
         GameObject gameOverText = new GameObject("GameOverText");
@@ -119,5 +104,17 @@ public class ScoreHandler : MonoBehaviour {
 
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("MainMenu");
+    }
+    //TODO extract this so it can be used in preventing shooting during inter-round menu
+    private bool CanShowEndScreen() {
+        bool haveSpawnsEnded = Spawner.Instance.GetEnemyCount() == 0;
+        bool areEnemiesPresent = GameObject.FindGameObjectsWithTag("enemy").Length != 0;
+
+        return haveSpawnsEnded && !areEnemiesPresent;
+    }
+
+    public IEnumerator ShowRoundEndScreen() {
+        yield return new WaitForSeconds(2);
+        canvasObject.SetActive(true);
     }
 }

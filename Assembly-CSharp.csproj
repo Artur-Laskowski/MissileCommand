@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EndOfRound.cs" />
+    <Compile Include="Assets\Scripts\EnemyBaseBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
