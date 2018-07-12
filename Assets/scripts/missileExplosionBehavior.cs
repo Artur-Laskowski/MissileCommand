@@ -52,7 +52,7 @@ public class MissileExplosionBehavior : MonoBehaviour {
     void SetExplosionHitboxSize(float size) {
         destructionSize = size / 10.0f;
     }
-
+    //TODO extract enemy listing function, cache them for performance
     void DetectAndExplodeEnemies() {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 
@@ -75,8 +75,8 @@ public class MissileExplosionBehavior : MonoBehaviour {
 
         if (enemy == null)
             return;
-        var eb = enemy.GetComponent<EnemyBehavior>();
-        eb.ExplodeEnemy();
+        var eb = enemy.GetComponent<EnemyBaseBehavior>();
+        eb.Explode();
     }
 
     void IncreaseScore() {
