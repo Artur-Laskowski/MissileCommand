@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 1884431892}
   - component: {fileID: 1884431891}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34e32c6e2d225743a4e7af35f43e79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameButton: {fileID: 1402900393}
+  newGameButton: {fileID: 1402900391}
+  enemyCount: 0
 --- !u!114 &1884431892
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,15 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\EndOfRound.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileExplosionBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileTubeBehavior.cs" />
-    <Compile Include="Assets\Scripts\ScoreHandlerBehavior.cs" />
+    <Compile Include="Assets\Scripts\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
-    <Compile Include="Assets\Scripts\SpawnerBehavior.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TargetBehavior.cs" />
     <Compile Include="Assets\Scripts\TargetMarkerBehavior.cs" />
     <Reference Include="UnityEditor.StandardEvents">

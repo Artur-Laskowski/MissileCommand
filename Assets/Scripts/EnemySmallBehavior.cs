@@ -9,7 +9,7 @@ public class EnemySmallBehavior : EnemyBehavior {
 
 	// Use this for initialization
 	void Start () {
-        scoreHandler = ScoreHandlerBehavior.Instance;
+        scoreHandler = ScoreHandler.Instance;
         creationTime = Time.time;
         destructibleAfter = Settings.Instance.EnemySmallDestructibleAfter;
 	}

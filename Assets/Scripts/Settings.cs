@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings {
+public class Settings : MonoBehaviour {
     
     public float TargetMovementSpeed { get; private set; }
     public float EnemySpawnsPerMinute { get; private set; }
@@ -27,8 +27,8 @@ public class Settings {
     static private Settings _instance;
     static public Settings Instance {
         get {
-            if (_instance == null)
-                _instance = new Settings();
+            //if (_instance == null)
+                //_instance = new Settings();
                 //throw new System.Exception("Tried to access singleton without instance");
             return _instance;
         }
@@ -41,10 +41,10 @@ public class Settings {
             }
         }
     }
-
-    // Use this for initialization
-    Settings () {
+    
+    void Awake () {
         InitializeWithDefaults();
+        Instance = this;
     }
 
     void InitializeWithDefaults() {
@@ -66,6 +66,8 @@ public class Settings {
 
         IsKeyboardInputMethod = false;
 
-        EnemySmallDestructibleAfter = 1.0f;
+        EnemySmallDestructibleAfter = 0.5f;
+
+        //int count = MainMenuBehavior.Instance.enemyCount;
     }
 }

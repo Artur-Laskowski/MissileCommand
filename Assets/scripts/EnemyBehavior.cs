@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     private Vector3 startPos;
     private Vector3 endPos;
 
-    protected ScoreHandlerBehavior scoreHandler;
+    protected ScoreHandler scoreHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class EnemyBehavior : MonoBehaviour {
         endPos  = new Vector3(Random.Range(-20.0f, 20.0f), -1, 0);
         journeyLength = Vector3.Distance(startPos, endPos);
 
-        scoreHandler = ScoreHandlerBehavior.Instance;
+        scoreHandler = ScoreHandler.Instance;
     }
 	
 	// Update is called once per frame
@@ -43,13 +43,18 @@ public class EnemyBehavior : MonoBehaviour {
         return this.transform.position.y < 0;
     }
 
+    virtual public bool IsDestructible() {
+        return true;
+    }
+
     protected void DestroyEnemy() {
+        ScoreHandler.Instance.ChangeEnemyCount(-1);
         Destroy(this.gameObject);
     }
 
     virtual public void ExplodeEnemy() {
         for (int i = 0; i < 5; i++)
-            SpawnSmallEnemy(this.transform.position + new Vector3(Random.Range(-2, 2), 2.0f, 0));
+            SpawnSmallEnemy(this.transform.position);
 
         DestroyEnemy();
         scoreHandler.ChangeScore(+1);
@@ -63,6 +68,6 @@ public class EnemyBehavior : MonoBehaviour {
     void SpawnSmallEnemy(Vector3 pos) {
         GameObject prefab = Resources.Load<GameObject>("Prefabs/enemyShipSmall");
         GameObject o = Instantiate(prefab, pos, Quaternion.identity);
-        o.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-500,500), Random.Range(200,600)));
+        o.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100,100), Random.Range(100,300)));
     }
 }

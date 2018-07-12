@@ -722,6 +722,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 980989919}
+  - component: {fileID: 980989920}
   m_Layer: 0
   m_Name: settings
   m_TagString: Untagged
@@ -742,6 +743,17 @@ Transform:
   m_Father: {fileID: 1789317100}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980989920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 980989918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0fa568c0ea824c960cd4a99b8a554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1016236775
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,7 +907,7 @@ GameObject:
   - component: {fileID: 1244629431}
   - component: {fileID: 1244629430}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

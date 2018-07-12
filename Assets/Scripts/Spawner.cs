@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerBehavior : MonoBehaviour {
+public class Spawner : MonoBehaviour {
 
     public Transform enemy;
 
     private float lastSpawnTime;
 
-    static private SpawnerBehavior _instance;
-    static public SpawnerBehavior Instance {
+    static private Spawner _instance;
+    static public Spawner Instance {
         get {
             return _instance;
         }
@@ -24,11 +24,15 @@ public class SpawnerBehavior : MonoBehaviour {
         }
     }
 
+    private void Awake() {
+        Instance = this;
+        lastSpawnTime = Time.time;
+    }
+
     // Use this for initialization
     void Start () {
         //enemy = FindObjectsOfTypeIncludingAssets()
-        Instance = this;
-        lastSpawnTime = Time.time;
+
 	}
 	
 	// Update is called once per frame
