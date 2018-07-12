@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EnemySmallBehavior : EnemyBehavior {
 
+    private float creationTime;
+    private float destructibleAfter;
+
 	// Use this for initialization
 	void Start () {
         scoreHandler = ScoreHandlerBehavior.Instance;
+        creationTime = Time.time;
+        destructibleAfter = Settings.Instance.EnemySmallDestructibleAfter;
 	}
 	
 	// Update is called once per frame
@@ -18,7 +23,16 @@ public class EnemySmallBehavior : EnemyBehavior {
     }
 
     public override void ExplodeEnemy() {
-        DestroyEnemy();
-        scoreHandler.ChangeScore(+1);
+        if (scoreHandler == null)
+            return;
+
+        if (IsDestructible()) {
+            DestroyEnemy();
+            scoreHandler.ChangeScore(+1);
+        }
+    }
+
+    public override bool IsDestructible() {
+        return Time.time > creationTime + destructibleAfter;
     }
 }

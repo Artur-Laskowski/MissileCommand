@@ -22,6 +22,8 @@ public class Settings {
 
     public bool IsKeyboardInputMethod { get; private set; }
 
+    public float EnemySmallDestructibleAfter { get; private set; }
+
     static private Settings _instance;
     static public Settings Instance {
         get {
@@ -51,7 +53,7 @@ public class Settings {
         MaxHealth = 100;
         IsLowFrameMode = false;
 
-        DefaultRoundsPerMinute = 20;
+        DefaultRoundsPerMinute = 200;
         DefaultInaccuracyOffset = 2.0f;
         InaccuracyDistance = 10.0f;
 
@@ -63,5 +65,7 @@ public class Settings {
         DefaultDetonationDistance = 0.1f;
 
         IsKeyboardInputMethod = false;
+
+        EnemySmallDestructibleAfter = 1.0f;
     }
 }

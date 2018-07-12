@@ -43,13 +43,17 @@ public class EnemyBehavior : MonoBehaviour {
         return this.transform.position.y < 0;
     }
 
+    virtual public bool IsDestructible() {
+        return true;
+    }
+
     protected void DestroyEnemy() {
         Destroy(this.gameObject);
     }
 
     virtual public void ExplodeEnemy() {
         for (int i = 0; i < 5; i++)
-            SpawnSmallEnemy(this.transform.position + new Vector3(Random.Range(-2, 2), 2.0f, 0));
+            SpawnSmallEnemy(this.transform.position);
 
         DestroyEnemy();
         scoreHandler.ChangeScore(+1);
@@ -63,6 +67,6 @@ public class EnemyBehavior : MonoBehaviour {
     void SpawnSmallEnemy(Vector3 pos) {
         GameObject prefab = Resources.Load<GameObject>("Prefabs/enemyShipSmall");
         GameObject o = Instantiate(prefab, pos, Quaternion.identity);
-        o.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-500,500), Random.Range(200,600)));
+        o.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100,100), Random.Range(100,300)));
     }
 }

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
+    <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileExplosionBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileTubeBehavior.cs" />
