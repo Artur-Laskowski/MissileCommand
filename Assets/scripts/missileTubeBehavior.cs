@@ -42,7 +42,7 @@ public class MissileTubeBehavior : MonoBehaviour {
 
     bool CanSpawnMissile() {
         float interval = 60.0f / roundsPerMinute;
-        return Time.time > lastShotTime + interval;
+        return Time.time > lastShotTime + interval && ScoreHandler.Instance.GetHealth() > 0;
     }
 
     void HandleUserInput() {
