@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour {
     private float lastSpawnTime;
 
     //TODO extract this
-    private int enemyCount;
+    public int enemyCount;
 
     static private Spawner _instance;
     static public Spawner Instance {
@@ -48,8 +48,9 @@ public class Spawner : MonoBehaviour {
     bool CanSpawnEnemy() {
         var delay = 60.0f / Settings.Instance.EnemySpawnsPerMinute;
         bool timeReached = Time.time > lastSpawnTime + delay;
+        bool pause = ScoreHandler.Instance.IsGamePaused;
 
-        return timeReached && GetEnemyCount() > 0;
+        return timeReached && GetEnemyCount() > 0 && !pause;
     }
 
     void SpawnEnemy() {

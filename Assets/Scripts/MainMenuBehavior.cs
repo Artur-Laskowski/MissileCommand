@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class MainMenuBehavior : MonoBehaviour {
 
     public GameObject newGameButton;
-
-    public int enemyCount;
+    public GameObject userInputDropdown;
 
     static private MainMenuBehavior _instance;
     static public MainMenuBehavior Instance {
@@ -44,10 +43,18 @@ public class MainMenuBehavior : MonoBehaviour {
     void Start () {
         newGameButton.GetComponent<Button>().onClick.AddListener(
             () => {
-                //newGameButton.SetActive(false);
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("GameScene");
             }
         );
+
+        var dropdown = userInputDropdown.GetComponent<Dropdown>();
+        dropdown.onValueChanged.AddListener(
+            (int option) => {
+                PlayerPrefs.SetInt("InputMethod", option);
+            }
+        );
+        dropdown.value = PlayerPrefs.GetInt("InputMethod", 0);
+        
 	}
 	
 	// Update is called once per frame

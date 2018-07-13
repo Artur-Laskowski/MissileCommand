@@ -44,25 +44,21 @@ public class UserControls : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        HandleButtons();
-        HandleMouseMovement();
-
-        Vector3 position = new Vector3();
         if (Settings.Instance.IsKeyboardInputMethod) {
-            Vector3 transform = new Vector3();
-
-            position += transform;
+            HandleButtons();
         }
         else {
+            HandleMouseButtons();
+            HandleMouseMovement();
         }
     }
 
     void HandleButtons() {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+        if (Input.GetKey(KeyCode.Space)) {
             OnPrimaryFire();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             OnPrimaryFireHeld();
         }
 
@@ -82,8 +78,17 @@ public class UserControls : MonoBehaviour {
 
     void HandleMouseMovement() {
         Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        position.z = 0;
         OnMouseMoved(position);
+    }
+
+    void HandleMouseButtons() {
+        if (Input.GetMouseButtonDown(0)) {
+            OnPrimaryFire();
+        }
+
+        if (Input.GetMouseButton(0)) {
+            OnPrimaryFireHeld();
+        }
     }
 
     void OnPrimaryFire() {

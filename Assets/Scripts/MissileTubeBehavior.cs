@@ -33,9 +33,8 @@ public class MissileTubeBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        SetRotation(transform.position, target.transform.position);
-
-        //HandleUserInput();
+        if (!ScoreHandler.Instance.IsGamePaused)
+            SetRotation(transform.position, target.transform.position);
     }
 
     void SetRotation(Vector3 start, Vector3 end) {
@@ -45,7 +44,9 @@ public class MissileTubeBehavior : MonoBehaviour {
 
     bool CanSpawnMissile() {
         float interval = 60.0f / roundsPerMinute;
-        return Time.time > lastShotTime + interval && ScoreHandler.Instance.GetHealth() > 0;
+        bool isAlive = ScoreHandler.Instance.GetHealth() > 0;
+        bool isPaused = ScoreHandler.Instance.IsGamePaused;
+            return Time.time > lastShotTime + interval && isAlive && !isPaused;
     }
 
     void FireStart() {

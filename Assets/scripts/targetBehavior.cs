@@ -12,17 +12,14 @@ public class TargetBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (Settings.Instance.IsKeyboardInputMethod) {
-            UserControls.Instance.MovementKeyPressed += HandleMovementKey;
-        }
-        else {
-            UserControls.Instance.MouseMoved += HandleMouseMovement;
-        }
+        UserControls.Instance.MovementKeyPressed += HandleMovementKey;
+        UserControls.Instance.MouseMoved += HandleMouseMovement;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position = currentLocation;
+        if (!ScoreHandler.Instance.IsGamePaused)
+            this.transform.position = currentLocation;
     }
 
     void HandleMovementKey(MovementKey keyPressed) {
@@ -44,6 +41,7 @@ public class TargetBehavior : MonoBehaviour {
     }
 
     void HandleMouseMovement(Vector3 position) {
+        position.z = 0.0f;
         currentLocation = position;
     }
 }

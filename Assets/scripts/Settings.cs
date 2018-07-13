@@ -24,6 +24,10 @@ public class Settings : MonoBehaviour {
 
     public float EnemySmallDestructibleAfter { get; private set; }
 
+    //public set
+
+
+
     static private Settings _instance;
     static public Settings Instance {
         get {
@@ -50,7 +54,7 @@ public class Settings : MonoBehaviour {
     void InitializeWithDefaults() {
         TargetMovementSpeed = 0.4f;
         EnemySpawnsPerMinute = 20;
-        MaxHealth = 100;
+        MaxHealth = 1;
         IsLowFrameMode = false;
 
         DefaultRoundsPerMinute = 200;
@@ -64,10 +68,8 @@ public class Settings : MonoBehaviour {
         DefaultMissileSpeed = 20.0f;
         DefaultDetonationDistance = 0.1f;
 
-        IsKeyboardInputMethod = false;
+        IsKeyboardInputMethod = PlayerPrefs.GetInt("InputMethod", 0) == 1;
 
         EnemySmallDestructibleAfter = 0.5f;
-
-        //int count = MainMenuBehavior.Instance.enemyCount;
     }
 }

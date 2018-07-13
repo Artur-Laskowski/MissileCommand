@@ -17,6 +17,30 @@ public class ScoreHandler : MonoBehaviour {
     private int score;
     private int health;
 
+    private bool _isGamePaused;
+    public bool IsGamePaused {
+        get {
+            return _isGamePaused;
+        }
+        set {
+            if (!IsGameOver) {
+                _isGamePaused = value;
+            }
+        }
+    }
+
+    public bool IsGameOver {
+        get {
+            return ScoreHandler.Instance.GetHealth() <= 0;
+        }
+        set {
+            if (value) {
+                int change = -ScoreHandler.Instance.GetHealth();
+                ScoreHandler.Instance.ChangeHealth(change);
+            }
+        }
+    }
+
     static private ScoreHandler _instance;
     static public ScoreHandler Instance {
         get {
@@ -36,12 +60,14 @@ public class ScoreHandler : MonoBehaviour {
     }
 
     private void Awake() {
+        Instance = this;
+
         score = 0;
         ChangeScore(0);
         health = Settings.Instance.MaxHealth;
         ChangeHealth(0);
 
-        Instance = this;
+        IsGamePaused = true;
 
         if (Settings.Instance.IsLowFrameMode) {
             QualitySettings.vSyncCount = 0;
@@ -57,6 +83,7 @@ public class ScoreHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (CanShowEndScreen()) {
+            ScoreHandler.Instance.IsGamePaused = true;
             StartCoroutine(ShowRoundEndScreen());
         }
     }
@@ -75,18 +102,22 @@ public class ScoreHandler : MonoBehaviour {
     }
 
     public void ChangeHealth(int change) {
-        if (health + change < 0)
-            return;
-
         health += change;
+        if (health < 0)
+            health = 0;
+
         healthText.text = health.ToString();
 
         if (health <= 0) {
             StartCoroutine(EndGame());
         }
     }
-
+    //TODO
     public IEnumerator EndGame() {
+        var explosionPrefab = Resources.Load<GameObject>("Prefabs/Explosion1");
+        GameObject o = Instantiate(explosionPrefab, new Vector3(0,10,0), Quaternion.identity);
+        o.transform.localScale = new Vector3(10, 10, 1);
+
         //show text
         GameObject gameOverText = new GameObject("GameOverText");
         GameObject canvas = GameObject.Find("GameCanvas");
@@ -109,8 +140,9 @@ public class ScoreHandler : MonoBehaviour {
     private bool CanShowEndScreen() {
         bool haveSpawnsEnded = Spawner.Instance.GetEnemyCount() == 0;
         bool areEnemiesPresent = GameObject.FindGameObjectsWithTag("enemy").Length != 0;
+        bool isPaused = ScoreHandler.Instance.IsGamePaused;
 
-        return haveSpawnsEnded && !areEnemiesPresent;
+        return haveSpawnsEnded && !areEnemiesPresent && !isPaused;
     }
 
     public IEnumerator ShowRoundEndScreen() {
