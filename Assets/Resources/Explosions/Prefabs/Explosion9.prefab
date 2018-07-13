@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: 11400008}
   m_Layer: 0
-  m_Name: Exploson5
+  m_Name: Explosion9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
   m_Layer: 0
-  m_Name: Exposion-[Explosion9]
+  m_Name: Exposion-[Explosion8]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4112196, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -104,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.25282073, y: 0.010000037, z: 0.3125687}
+  m_LocalPosition: {x: 0, y: 0.009999868, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.44416505, z: 0.000000080807865}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0.00000013256437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0597952, y: 1.859949, z: -0.00000022177062}
+  m_LocalPosition: {x: -0.16642311, y: 1.7028753, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -162,7 +162,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.9191176, g: 0.39934075, b: 0, a: 1}
+  m_Color: {r: 0.9191176, g: 0.28524342, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 8
   m_SpotAngle: 30
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lihgt: {fileID: 10800006}
   Delay: 0.3
-  Down: 0.5
+  Down: 2
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13899,7 +13899,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 034c0200ac78e9442b8b3ada23cec204, type: 2}
+  - {fileID: 2100000, guid: 3c26527e84312c447be77f2910dfffa3, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

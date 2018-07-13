@@ -54,7 +54,7 @@ public class Settings : MonoBehaviour {
     void InitializeWithDefaults() {
         TargetMovementSpeed = 0.4f;
         EnemySpawnsPerMinute = 20;
-        MaxHealth = 1;
+        MaxHealth = 10;
         IsLowFrameMode = false;
 
         DefaultRoundsPerMinute = 200;

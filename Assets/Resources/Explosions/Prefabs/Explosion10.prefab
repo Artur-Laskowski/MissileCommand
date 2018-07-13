@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: 11400008}
   m_Layer: 0
-  m_Name: Exploson10
+  m_Name: Explosion10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

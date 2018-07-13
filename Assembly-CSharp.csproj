@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EnemyBaseBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
+    <Compile Include="Assets\Scripts\EnumerableExtension.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileExplosionBehavior.cs" />

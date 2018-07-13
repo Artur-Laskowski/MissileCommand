@@ -16,6 +16,13 @@ public class MissileExplosionBehavior : MonoBehaviour {
         collapseRatio = Settings.Instance.DefaultExplosionCollapseRate;
         this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
+        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/Explosion" + Random.Range(6, 8));
+
+        Vector3 position = this.transform.position + new Vector3(0, -1, 0);
+        GameObject o = Instantiate(explosionPrefab, position, Quaternion.identity);
+        GameObject.Destroy(o, 2);
+
         Destroy(this.gameObject, duration);
     }
 	
