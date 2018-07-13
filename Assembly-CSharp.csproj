@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TargetBehavior.cs" />
     <Compile Include="Assets\Scripts\TargetMarkerBehavior.cs" />
+    <Compile Include="Assets\Scripts\UserControls.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/dev/MissileCommand/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

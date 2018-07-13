@@ -26,13 +26,16 @@ public class MissileTubeBehavior : MonoBehaviour {
         inaccuracyOffset = Settings.Instance.DefaultInaccuracyOffset;
         inaccuracyDistance = Settings.Instance.InaccuracyDistance;
         lastShotTime = Time.time;
+
+        UserControls.Instance.PrimaryFire += FireStart;
+        UserControls.Instance.PrimaryFireHeld += FireHeld;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         SetRotation(transform.position, target.transform.position);
 
-        HandleUserInput();
+        //HandleUserInput();
     }
 
     void SetRotation(Vector3 start, Vector3 end) {
@@ -45,18 +48,16 @@ public class MissileTubeBehavior : MonoBehaviour {
         return Time.time > lastShotTime + interval && ScoreHandler.Instance.GetHealth() > 0;
     }
 
-    void HandleUserInput() {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
-            if (CanSpawnMissile()) {
-                SpawnMissile();
-                lastShotTime += Random.Range(0.0f, 60.0f / roundsPerMinute);
-            }
+    void FireStart() {
+        if (CanSpawnMissile()) {
+            SpawnMissile();
+            lastShotTime += Random.Range(0.0f, 60.0f / roundsPerMinute);
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) {
-            if (CanSpawnMissile()) {
-                SpawnMissile();
-            }
+    void FireHeld() {
+        if (CanSpawnMissile()) {
+            SpawnMissile();
         }
     }
 

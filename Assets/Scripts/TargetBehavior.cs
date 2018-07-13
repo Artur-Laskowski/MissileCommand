@@ -4,45 +4,46 @@ using UnityEngine;
 
 public class TargetBehavior : MonoBehaviour {
 
+    Vector3 currentLocation;
 
-    private bool IsKeyboardInputMethod;
+    private void Awake() {
+        currentLocation = this.transform.position;
+    }
 
-	// Use this for initialization
-	void Start () {
-        IsKeyboardInputMethod = false;
+    // Use this for initialization
+    void Start () {
+        if (Settings.Instance.IsKeyboardInputMethod) {
+            UserControls.Instance.MovementKeyPressed += HandleMovementKey;
+        }
+        else {
+            UserControls.Instance.MouseMoved += HandleMouseMovement;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        var newCursorPos = GetNewCursorLocation();
-
-        this.transform.position = newCursorPos;
+        this.transform.position = currentLocation;
     }
 
-    Vector3 GetNewCursorLocation() {
-        var speed = Settings.Instance.TargetMovementSpeed;
+    void HandleMovementKey(MovementKey keyPressed) {
+        float movement = Settings.Instance.TargetMovementSpeed;
+        switch (keyPressed) {
+            case MovementKey.Up:
+                currentLocation.y += movement;
+                break;
+            case MovementKey.Down:
+                currentLocation.y -= movement;
+                break;
+            case MovementKey.Left:
+                currentLocation.x -= movement;
+                break;
+            case MovementKey.Right:
+                currentLocation.x += movement;
+                break;
+        }
+    }
 
-        Vector3 position = new Vector3();
-        if (IsKeyboardInputMethod) {
-            Vector3 transform = new Vector3();
-            if (Input.GetKey(KeyCode.LeftArrow)) {
-                transform += new Vector3(-1.0f * speed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.RightArrow)) {
-                transform += new Vector3(1.0f * speed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.DownArrow)) {
-                transform += new Vector3(0, -1.0f * speed, 0);
-            }
-            if (Input.GetKey(KeyCode.UpArrow)) {
-                transform += new Vector3(0, 1.0f * speed, 0);
-            }
-            position += transform;
-        }
-        else {
-            position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            position.z = 0;
-        }
-        return position;
+    void HandleMouseMovement(Vector3 position) {
+        currentLocation = position;
     }
 }
