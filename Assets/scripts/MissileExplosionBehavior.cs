@@ -16,12 +16,7 @@ public class MissileExplosionBehavior : MonoBehaviour {
         collapseRatio = Settings.Instance.DefaultExplosionCollapseRate;
         this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
-        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-        var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/Explosion" + Random.Range(6, 8));
-
-        Vector3 position = this.transform.position + new Vector3(0, -1, 0);
-        GameObject o = Instantiate(explosionPrefab, position, Quaternion.identity);
-        GameObject.Destroy(o, 2);
+        SpawnExplosion();
 
         Destroy(this.gameObject, duration);
     }
@@ -34,6 +29,15 @@ public class MissileExplosionBehavior : MonoBehaviour {
 
         DetectAndExplodeEnemies();
 	}
+
+    void SpawnExplosion() {
+        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/Explosion" + Random.Range(6, 8));
+
+        Vector3 position = this.transform.position + new Vector3(0, -1, 0);
+        GameObject o = Instantiate(explosionPrefab, position, Quaternion.identity);
+        GameObject.Destroy(o, duration);
+    }
 
     float GetCurrentExplosionSize() {
         var maxSizeTime = duration * collapseRatio;
@@ -77,9 +81,6 @@ public class MissileExplosionBehavior : MonoBehaviour {
     }
 
     void Explode(GameObject enemy) {
-        //Destroy(enemy);
-        //IncreaseScore();
-
         if (enemy == null)
             return;
         var eb = enemy.GetComponent<EnemyBaseBehavior>();

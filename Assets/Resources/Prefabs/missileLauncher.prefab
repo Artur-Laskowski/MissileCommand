@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9a7210073a1824c8dbe5e44bae0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   parentLauncher: {fileID: 1285869267115860}
   muzzle: {fileID: 4543944020735610}
   missile: {fileID: 1970843663978920, guid: be9279cc41ef8cc46a388b50f7f4fec2, type: 2}

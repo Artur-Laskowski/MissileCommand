@@ -20,7 +20,13 @@ public class EndOfRound : MonoBehaviour {
 
     public void NextRound() {
         ScoreHandler.Instance.IsGamePaused = false;
-        Spawner.Instance.enemyCount = 5;
+        Spawner.Instance.EnemyCount = 5;
         this.gameObject.SetActive(false);
+    }
+
+    public void BuyTurret() {
+        var turretPrefab = Resources.Load<GameObject>("Prefabs/missileLauncher");
+
+        Instantiate(turretPrefab, new Vector3(0, -10, 0), Quaternion.identity);
     }
 }

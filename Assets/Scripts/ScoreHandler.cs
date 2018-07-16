@@ -17,6 +17,8 @@ public class ScoreHandler : MonoBehaviour {
     private int score;
     private int health;
 
+    private bool endingInProgress;
+    
     private bool _isGamePaused;
     public bool IsGamePaused {
         get {
@@ -31,12 +33,12 @@ public class ScoreHandler : MonoBehaviour {
 
     public bool IsGameOver {
         get {
-            return ScoreHandler.Instance.GetHealth() <= 0;
+            return GetHealth() <= 0;
         }
         set {
             if (value) {
-                int change = -ScoreHandler.Instance.GetHealth();
-                ScoreHandler.Instance.ChangeHealth(change);
+                int change = -GetHealth();
+                ChangeHealth(change);
             }
         }
     }
@@ -83,7 +85,7 @@ public class ScoreHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (CanShowEndScreen()) {
-            ScoreHandler.Instance.IsGamePaused = true;
+            IsGamePaused = true;
             StartCoroutine(ShowRoundEndScreen());
         }
     }
@@ -112,13 +114,26 @@ public class ScoreHandler : MonoBehaviour {
             StartCoroutine(EndGame());
         }
     }
-    //TODO
-    public IEnumerator EndGame() {
-        var explosionPrefab = Resources.Load<GameObject>("Prefabs/Explosion1");
-        GameObject o = Instantiate(explosionPrefab, new Vector3(0,10,0), Quaternion.identity);
-        o.transform.localScale = new Vector3(10, 10, 1);
 
-        //show text
+    public IEnumerator EndGame() {
+        if (!endingInProgress) {
+            endingInProgress = true;
+
+            ShowEndingExplosion();
+            ShowEndingText();
+
+            yield return new WaitForSeconds(5.0f);
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void ShowEndingExplosion() {
+        var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/ExplosionBig");
+        GameObject o = Instantiate(explosionPrefab, new Vector3(0, 10, 0), Quaternion.identity);
+        Destroy(o, 5);
+    }
+
+    private void ShowEndingText() {
         GameObject gameOverText = new GameObject("GameOverText");
         GameObject canvas = GameObject.Find("GameCanvas");
         gameOverText.transform.SetParent(canvas.transform);
@@ -132,17 +147,15 @@ public class ScoreHandler : MonoBehaviour {
         t.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         t.text = "GAME OVER\n\nSCORE: " + score;
         t.transform.localPosition = new Vector3(0, 0, 0);
-
-        yield return new WaitForSeconds(5.0f);
-        SceneManager.LoadScene("MainMenu");
     }
+
     //TODO extract this so it can be used in preventing shooting during inter-round menu
     private bool CanShowEndScreen() {
         bool haveSpawnsEnded = Spawner.Instance.GetEnemyCount() == 0;
         bool areEnemiesPresent = GameObject.FindGameObjectsWithTag("enemy").Length != 0;
-        bool isPaused = ScoreHandler.Instance.IsGamePaused;
+        bool isPaused = IsGamePaused;
 
-        return haveSpawnsEnded && !areEnemiesPresent && !isPaused;
+        return haveSpawnsEnded && !areEnemiesPresent && !isPaused && !IsGameOver;
     }
 
     public IEnumerator ShowRoundEndScreen() {

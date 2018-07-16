@@ -7,9 +7,8 @@ public class Spawner : MonoBehaviour {
     public Transform enemy;
 
     private float lastSpawnTime;
-
-    //TODO extract this
-    public int enemyCount;
+    
+    public int EnemyCount { get; set; }
 
     static private Spawner _instance;
     static public Spawner Instance {
@@ -35,7 +34,7 @@ public class Spawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //enemy = FindObjectsOfTypeIncludingAssets()
-        enemyCount = 1;
+        EnemyCount = 1;
 	}
 	
 	// Update is called once per frame
@@ -61,12 +60,12 @@ public class Spawner : MonoBehaviour {
     }
 
     public int GetEnemyCount() {
-        return enemyCount;
+        return EnemyCount;
     }
 
     public void ChangeEnemyCount(int change) {
-        if (enemyCount >= change) {
-            enemyCount += change;
+        if (EnemyCount >= change) {
+            EnemyCount += change;
         }
 
     }

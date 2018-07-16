@@ -32,17 +32,9 @@ public class EnemyBehavior : EnemyBaseBehavior {
     }
 
     public override void Explode() {
-        //TODO refactor
-        var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/Explosion" + Random.Range(6, 8));
-
-        Vector3 position = this.transform.position + new Vector3(0, -1, 0);
-        GameObject o = Instantiate(explosionPrefab, position, Quaternion.identity);
-        GameObject.Destroy(o, 2);
-
         base.Explode();
         for (int i = 0; i < 5; i++)
             SpawnSmallEnemy(this.transform.position);
-
     }
     
     void Move() {
@@ -52,8 +44,6 @@ public class EnemyBehavior : EnemyBaseBehavior {
     }
 
     void SpawnSmallEnemy(Vector3 pos) {
-        GameObject o = Instantiate(smallShipPrefab, pos, Quaternion.identity);
-        Vector2 force = new Vector2(Random.Range(-100, 100), Random.Range(100, 300));
-        o.GetComponent<Rigidbody2D>().AddForce(force);
+        Instantiate(smallShipPrefab, pos, Quaternion.identity);
     }
 }

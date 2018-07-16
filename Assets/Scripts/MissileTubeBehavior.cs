@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissileTubeBehavior : MonoBehaviour {
-
-    public GameObject target;
+    
     public GameObject parentLauncher;
-
     public Transform muzzle;
-
     public GameObject missile;
     public GameObject targetMarker;
 
@@ -17,9 +15,27 @@ public class MissileTubeBehavior : MonoBehaviour {
     private float inaccuracyDistance;
 
     private float lastShotTime;
+    private bool isPlaced;
+
+    static private GameObject healthbarPrefab;
+    static private GameObject gameCanvas;
+    static private GameObject target;
 
     // Use this for initialization
     void Start () {
+        if (target == null) {
+            target = GameObject.Find("target");
+        }
+        isPlaced = false;
+
+        //TODO refactor
+        if (healthbarPrefab == null) {
+            healthbarPrefab = Resources.Load<GameObject>("Prefabs/HealthBar");
+        }
+        if (gameCanvas == null) {
+            gameCanvas = GameObject.Find("GameCanvas");
+        }
+
         this.transform.SetParent(parentLauncher.transform);
 
         roundsPerMinute = Settings.Instance.DefaultRoundsPerMinute;
@@ -29,12 +45,39 @@ public class MissileTubeBehavior : MonoBehaviour {
 
         UserControls.Instance.PrimaryFire += FireStart;
         UserControls.Instance.PrimaryFireHeld += FireHeld;
-	}
+        UserControls.Instance.PrimaryFire += PlaceTurret;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (!ScoreHandler.Instance.IsGamePaused)
             SetRotation(transform.position, target.transform.position);
+
+        if (!isPlaced) {
+            FollowCursor();
+        }
+    }
+
+    void FollowCursor() {
+        Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        this.parentLauncher.transform.position = new Vector3(position.x, 0, 0);
+    }
+
+    void PlaceTurret() {
+        if (isPlaced)
+            return;
+        isPlaced = true;
+
+        CreateHealthbar();
+    }
+
+    void CreateHealthbar() {
+        var worldPosition = this.transform.position + new Vector3(0, -0.5f, 0);
+        var screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        var healthbar = Instantiate(healthbarPrefab, screenPosition, Quaternion.identity);
+        healthbar.transform.SetParent(gameCanvas.transform);
+        healthbar.transform.localScale = new Vector3(0.05f, 0.05f);
+        healthbar.GetComponent<Slider>().value = 0.5f;
     }
 
     void SetRotation(Vector3 start, Vector3 end) {

@@ -61,15 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Resources\Explosions\Script\csDemoScenceControl.cs" />
-    <Compile Include="Assets\Resources\Explosions\Script\csLightControl.cs" />
-    <Compile Include="Assets\Resources\Explosions\Script\csMouseOrbit.cs" />
-    <Compile Include="Assets\Resources\Explosions\Script\DestroyEffect.cs" />
     <Compile Include="Assets\Scripts\EndOfRound.cs" />
     <Compile Include="Assets\Scripts\EnemyBaseBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemySmallBehavior.cs" />
     <Compile Include="Assets\Scripts\EnumerableExtension.cs" />
+    <Compile Include="Assets\Scripts\GameCanvasBehavior.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileBehavior.cs" />
     <Compile Include="Assets\Scripts\MissileExplosionBehavior.cs" />
