@@ -832,6 +832,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c0fa568c0ea824c960cd4a99b8a554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSpeedLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  explosionSizeLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  accuracyLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  rofLevels: 
 --- !u!1 &1016236775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1581,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a0a2dfdf8e261141b2cc2a31cb3ebbd, type: 3}
-  m_Color: {r: 0.5849056, g: 0.35306194, b: 0.1738163, a: 1}
+  m_Color: {r: 0.8490566, g: 0.6667726, b: 0.5246529, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

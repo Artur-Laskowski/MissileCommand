@@ -54,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileExplosion: {fileID: 1052586733253930, guid: 858d244e89cc2474780da126cd0c98c0,
     type: 2}
-  speed: 0
+  targetMarkerPrefab: {fileID: 1097811294023734, guid: c1b5365a2fa86f940adb6da030ad0b59,
+    type: 2}
 --- !u!212 &212059719922644792
 SpriteRenderer:
   m_ObjectHideFlags: 1

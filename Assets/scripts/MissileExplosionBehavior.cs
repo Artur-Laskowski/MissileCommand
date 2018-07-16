@@ -10,13 +10,12 @@ public class MissileExplosionBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        maxSize = Settings.Instance.DefaultMaxExplosionSize;
         startTime = Time.time;
         duration = Settings.Instance.DefaultExplosionDuration;
         collapseRatio = Settings.Instance.DefaultExplosionCollapseRate;
         this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
-        SpawnExplosion();
+        //SpawnExplosion();
 
         Destroy(this.gameObject, duration);
     }
@@ -30,8 +29,12 @@ public class MissileExplosionBehavior : MonoBehaviour {
         DetectAndExplodeEnemies();
 	}
 
+    public void Initialize(float explosionSize) {
+        maxSize = explosionSize;
+    }
+
     void SpawnExplosion() {
-        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         var explosionPrefab = Resources.Load<GameObject>("Explosions/Prefabs/Explosion" + Random.Range(6, 8));
 
         Vector3 position = this.transform.position + new Vector3(0, -1, 0);
