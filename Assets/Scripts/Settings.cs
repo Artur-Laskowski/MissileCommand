@@ -53,7 +53,7 @@ public class Settings : MonoBehaviour {
         }
     }
     
-    void Awake () {
+    void Awake() {
         InitializeWithDefaults();
         Instance = this;
     }

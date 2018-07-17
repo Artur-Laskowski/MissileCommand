@@ -95,9 +95,20 @@ public class MissileTubeBehavior : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         if (!ScoreHandler.Instance.IsGamePaused)
             SetRotation(transform.position, target.transform.position);
+
+        if (healthBar != null) {
+            if (!ScoreHandler.Instance.IsGamePaused) {
+                if (upgradeButton.activeSelf)
+                    upgradeButton.SetActive(false);
+            }
+            else {
+                if (!upgradeButton.activeSelf)
+                    upgradeButton.SetActive(true);
+            }
+        }
 
         if (!isPlaced) {
             FollowCursor();

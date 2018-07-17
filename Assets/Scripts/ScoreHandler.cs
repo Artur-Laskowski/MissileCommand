@@ -5,24 +5,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreHandler : MonoBehaviour {
-    [SerializeField]
-    private Text scoreText;
 
-    [SerializeField]
-    private Text healthText;
+    public Text scoreText;
 
-    [SerializeField]
-    private GameObject canvasObject;
+    public Text healthText;
 
-    [SerializeField]
-    private Text moneyText;
-    
+    public GameObject endOfRoundCanvasObject;
+
+    public Text moneyText;
+
     private int score;
     private int health;
     private int money;
 
     private bool endingInProgress;
-    
+
     private bool _isGamePaused;
     public bool IsGamePaused {
         get {
@@ -65,7 +62,7 @@ public class ScoreHandler : MonoBehaviour {
         }
     }
 
-    private void Awake() {
+    private void Start() {
         Instance = this;
 
         score = 0;
@@ -84,12 +81,12 @@ public class ScoreHandler : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    //void Start() {
 
-    }
-	
-	// Update is called once per frame
-	void Update () {
+    //}
+
+    // Update is called once per frame
+    void Update() {
         if (CanShowEndScreen()) {
             IsGamePaused = true;
             StartCoroutine(ShowRoundEndScreen());
@@ -130,7 +127,7 @@ public class ScoreHandler : MonoBehaviour {
     public void ChangeMoney(int change) {
         money += change;
 
-        moneyText.text = money.ToString();
+        moneyText.text = money.ToString() + "$";
     }
 
     public IEnumerator EndGame() {
@@ -178,6 +175,6 @@ public class ScoreHandler : MonoBehaviour {
 
     public IEnumerator ShowRoundEndScreen() {
         yield return new WaitForSeconds(2);
-        canvasObject.SetActive(true);
+        endOfRoundCanvasObject.SetActive(true);
     }
 }

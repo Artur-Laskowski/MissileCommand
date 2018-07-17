@@ -20,6 +20,10 @@ public class EndOfRound : MonoBehaviour {
 
     public void NextRound() {
         ScoreHandler.Instance.IsGamePaused = false;
+
+        if (UpgradeMenuBehavior.currentlyOpenedUpgradeMenu != null)
+            Destroy(UpgradeMenuBehavior.currentlyOpenedUpgradeMenu);
+
         Spawner.Instance.EnemyCount = 5;
         this.gameObject.SetActive(false);
     }

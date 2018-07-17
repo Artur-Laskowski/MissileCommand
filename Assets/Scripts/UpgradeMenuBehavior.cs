@@ -18,6 +18,8 @@ public class UpgradeMenuBehavior : MonoBehaviour {
 
     public static bool UpgradeMenuOpened = false;
 
+    static public GameObject currentlyOpenedUpgradeMenu;
+
     private int ProjectileSpeedLevel {
         get {
             return selectedTurret.projectileSpeedLevel;
@@ -84,7 +86,7 @@ public class UpgradeMenuBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        currentlyOpenedUpgradeMenu = this.gameObject;
 	}
 	
 	// Update is called once per frame
