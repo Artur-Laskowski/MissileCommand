@@ -20,7 +20,11 @@ public class EnemyBehavior : EnemyBaseBehavior {
 
         speed = 5;
         startPos = this.transform.position;
-        endPos = new Vector3(Random.Range(-20.0f, 20.0f), -1, 0);
+
+        float xMin = Settings.Instance.XPosMin;
+        float xMax = Settings.Instance.XPosMax;
+
+        endPos = new Vector3(Random.Range(xMin + 2, xMax - 2), -1, 0);
         journeyLength = Vector3.Distance(startPos, endPos);
         smallShipPrefab = Resources.Load<GameObject>("Prefabs/enemyShipSmall");
     }
@@ -33,7 +37,7 @@ public class EnemyBehavior : EnemyBaseBehavior {
 
     public override void Explode() {
         base.Explode();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < Settings.Instance.SubEnemiesCount; i++)
             SpawnSmallEnemy(this.transform.position);
     }
     

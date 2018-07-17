@@ -16,14 +16,21 @@ public class UpgradeMenuBehavior : MonoBehaviour {
 
     public MissileTubeBehavior selectedTurret;
 
+    public static bool UpgradeMenuOpened = false;
+
     private int ProjectileSpeedLevel {
         get {
             return selectedTurret.projectileSpeedLevel;
         }
         set {
+            if (value > 10)
+                return;
             selectedTurret.projectileSpeedLevel = value;
             projectileSpeed.text = value.ToString();
-            projectileSpeedCost.text = (value * 10).ToString();
+            string newCost = "max";
+            if (value < 10)
+                newCost = Settings.Instance.upgradeCosts[value].ToString() + "$";
+            projectileSpeedCost.text = newCost;
         }
     }
 
@@ -32,9 +39,14 @@ public class UpgradeMenuBehavior : MonoBehaviour {
             return selectedTurret.explosionSizeLevel;
         }
         set {
+            if (value > 10)
+                return;
             selectedTurret.explosionSizeLevel = value;
             explosionSize.text = value.ToString();
-            explosionSizeCost.text = (value * 10).ToString();
+            string newCost = "max";
+            if (value < 10)
+                newCost = Settings.Instance.upgradeCosts[value].ToString() + "$";
+            explosionSizeCost.text = newCost;
         }
     }
 
@@ -43,9 +55,14 @@ public class UpgradeMenuBehavior : MonoBehaviour {
             return selectedTurret.accuracyLevel;
         }
         set {
+            if (value > 10)
+                return;
             selectedTurret.accuracyLevel = value;
             accuracy.text = value.ToString();
-            accuracyCost.text = (value * 10).ToString();
+            string newCost = "max";
+            if (value < 10)
+                newCost = Settings.Instance.upgradeCosts[value].ToString() + "$";
+            accuracyCost.text = newCost;
         }
     }
 
@@ -54,9 +71,14 @@ public class UpgradeMenuBehavior : MonoBehaviour {
             return selectedTurret.RofLevel;
         }
         set {
+            if (value > 10)
+                return;
             selectedTurret.RofLevel = value;
             rateOfFire.text = value.ToString();
-            rateOfFireCost.text = (value * 10).ToString(); //TODO costs
+            string newCost = "max";
+            if (value < 10)
+                newCost = Settings.Instance.upgradeCosts[value].ToString() + "$";
+            rateOfFireCost.text = newCost;
         }
     }
 
@@ -71,22 +93,55 @@ public class UpgradeMenuBehavior : MonoBehaviour {
 	}
 
     public void UpgradeProjectileSpeed() {
+        var newLevel = ProjectileSpeedLevel + 1;
+        var upgradeCost = Settings.Instance.upgradeCosts[newLevel - 1];
+        var money = ScoreHandler.Instance.GetMoney();
+        if (upgradeCost > money)
+            return;
+
+        ScoreHandler.Instance.ChangeMoney(-upgradeCost);
+        
         ProjectileSpeedLevel++;
     }
 
     public void UpgradeExplosionSize() {
+        var newLevel = ExplosionSizeLevel + 1;
+        var upgradeCost = Settings.Instance.upgradeCosts[newLevel - 1];
+        var money = ScoreHandler.Instance.GetMoney();
+        if (upgradeCost > money)
+            return;
+
+        ScoreHandler.Instance.ChangeMoney(-upgradeCost);
+
         ExplosionSizeLevel++;
     }
 
     public void UpgradeAccuracy() {
+        var newLevel = AccuracyLevel + 1;
+        var upgradeCost = Settings.Instance.upgradeCosts[newLevel - 1];
+        var money = ScoreHandler.Instance.GetMoney();
+        if (upgradeCost > money)
+            return;
+
+        ScoreHandler.Instance.ChangeMoney(-upgradeCost);
+
         AccuracyLevel++;
     }
 
     public void UpgradeRateOfFire() {
+        var newLevel = RateOfFireLevel + 1;
+        var upgradeCost = Settings.Instance.upgradeCosts[newLevel - 1];
+        var money = ScoreHandler.Instance.GetMoney();
+        if (upgradeCost > money)
+            return;
+
+        ScoreHandler.Instance.ChangeMoney(-upgradeCost);
+
         RateOfFireLevel++;
     }
 
     public void Close() {
+        UpgradeMenuOpened = false;
         Destroy(this.gameObject);
     }
 

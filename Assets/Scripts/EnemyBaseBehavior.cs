@@ -29,6 +29,7 @@ public class EnemyBaseBehavior : MonoBehaviour {
             SpawnExplosion();
             DecreaseHealth();
             DestroyEnemy();
+            DamageTurrets();
         }
     }
 
@@ -42,6 +43,23 @@ public class EnemyBaseBehavior : MonoBehaviour {
         Vector3 position = this.transform.position + new Vector3(0, 0, 0);
         GameObject o = Instantiate(explosionPrefab, position, Quaternion.identity);
         GameObject.Destroy(o, 4);
+    }
+
+    protected void DamageTurrets() {
+        GameObject[] turrets = GameObject.FindGameObjectsWithTag("turret");
+
+        foreach (var turret in turrets) {
+            if (IsInRangeOfExplosion(turret)) {
+                turret.GetComponent<MissileTubeBehavior>().TurretHealth -= 10; //TODO
+            }
+        }
+    }
+
+    protected bool IsInRangeOfExplosion(GameObject turret) {
+        Vector3 turretPos = turret.transform.position;
+        Vector3 explosionPos = this.transform.position;
+        float distance = Vector3.Distance(turretPos, explosionPos);
+        return distance < 5.0f;
     }
 
     protected bool IsCollidingWithGround() {

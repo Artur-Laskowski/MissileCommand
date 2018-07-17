@@ -25,6 +25,10 @@ public class EndOfRound : MonoBehaviour {
     }
 
     public void BuyTurret() {
+        if (ScoreHandler.Instance.GetMoney() < 50)
+            return;
+        ScoreHandler.Instance.ChangeMoney(-50);
+
         var turretPrefab = Resources.Load<GameObject>("Prefabs/missileLauncher");
 
         Instantiate(turretPrefab, new Vector3(0, -10, 0), Quaternion.identity);

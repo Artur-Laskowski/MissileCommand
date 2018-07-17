@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 114519813803778290}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,8 +143,9 @@ MonoBehaviour:
   parentLauncher: {fileID: 1285869267115860}
   muzzle: {fileID: 4543944020735610}
   missile: {fileID: 1970843663978920, guid: be9279cc41ef8cc46a388b50f7f4fec2, type: 2}
-  targetMarker: {fileID: 1097811294023734, guid: c1b5365a2fa86f940adb6da030ad0b59,
-    type: 2}
+  projectileSpeedLevel: 0
+  explosionSizeLevel: 0
+  accuracyLevel: 0
 --- !u!212 &212485351114169134
 SpriteRenderer:
   m_ObjectHideFlags: 1

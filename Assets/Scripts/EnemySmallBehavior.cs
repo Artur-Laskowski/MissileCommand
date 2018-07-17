@@ -13,6 +13,9 @@ public class EnemySmallBehavior : EnemyBaseBehavior {
         scoreValue = 1;
         healthValue = 1;
 
+        StartCoroutine(EnableCollision());
+
+
         destructibleAfter = Settings.Instance.EnemySmallDestructibleAfter;
         
         Vector2 force = new Vector2(Random.Range(-100, 100), Random.Range(100, 300));
@@ -24,6 +27,12 @@ public class EnemySmallBehavior : EnemyBaseBehavior {
 	// Update is called once per frame
 	protected new void Update () {
         base.Update();
+    }
+
+    private IEnumerator EnableCollision() {
+        yield return new WaitForSeconds(2);
+
+        this.GetComponent<CircleCollider2D>().isTrigger = false;
     }
 
     public override void Explode() {

@@ -13,9 +13,13 @@ public class ScoreHandler : MonoBehaviour {
 
     [SerializeField]
     private GameObject canvasObject;
+
+    [SerializeField]
+    private Text moneyText;
     
     private int score;
     private int health;
+    private int money;
 
     private bool endingInProgress;
     
@@ -68,6 +72,8 @@ public class ScoreHandler : MonoBehaviour {
         ChangeScore(0);
         health = Settings.Instance.MaxHealth;
         ChangeHealth(0);
+        money = Settings.Instance.DefaultMoney;
+        ChangeMoney(0);
 
         IsGamePaused = true;
 
@@ -98,9 +104,15 @@ public class ScoreHandler : MonoBehaviour {
         return health;
     }
 
+    public int GetMoney() {
+        return money;
+    }
+
     public void ChangeScore(int change) {
         score += change;
         scoreText.text = score.ToString();
+
+        ChangeMoney(change);
     }
 
     public void ChangeHealth(int change) {
@@ -113,6 +125,12 @@ public class ScoreHandler : MonoBehaviour {
         if (health <= 0) {
             StartCoroutine(EndGame());
         }
+    }
+
+    public void ChangeMoney(int change) {
+        money += change;
+
+        moneyText.text = money.ToString();
     }
 
     public IEnumerator EndGame() {

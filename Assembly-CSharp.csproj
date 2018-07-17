@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ColliderLeft.cs" />
+    <Compile Include="Assets\Scripts\ColliderRight.cs" />
     <Compile Include="Assets\Scripts\EndOfRound.cs" />
     <Compile Include="Assets\Scripts\EnemyBaseBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />

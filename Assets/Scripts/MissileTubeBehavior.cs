@@ -24,6 +24,25 @@ public class MissileTubeBehavior : MonoBehaviour {
     public int explosionSizeLevel;
     public int accuracyLevel;
 
+    private int _turretHealth;
+    public int TurretHealth {
+        get {
+            return _turretHealth;
+        }
+        set {
+            if (value < 0) {
+                _turretHealth = 0;
+                DestroyTurret();
+                return;
+            }
+
+            _turretHealth = value;
+            healthBar.GetComponent<Slider>().value = value / 100.0f;
+        }
+    }
+
+    private GameObject healthBar;
+
     private int _rofLevel;
     public int RofLevel {
         get {
@@ -102,10 +121,11 @@ public class MissileTubeBehavior : MonoBehaviour {
     void CreateHealthbar() {
         var worldPosition = this.transform.position + new Vector3(0, -0.5f, 0);
         var screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
-        var healthbar = Instantiate(healthbarPrefab, screenPosition, Quaternion.identity);
-        healthbar.transform.SetParent(gameCanvas.transform);
-        healthbar.transform.localScale = new Vector3(0.05f, 0.05f);
-        healthbar.GetComponent<Slider>().value = 0.5f;
+        healthBar = Instantiate(healthbarPrefab, screenPosition, Quaternion.identity);
+        healthBar.transform.SetParent(gameCanvas.transform);
+        healthBar.transform.localScale = new Vector3(0.05f, 0.05f);
+
+        TurretHealth = 100; //this will initialize healthbar value
     }
 
     void CreateUpgradeButton() {
@@ -118,6 +138,9 @@ public class MissileTubeBehavior : MonoBehaviour {
     }
 
     void UpgradeButtonClicked() {
+        if (UpgradeMenuBehavior.UpgradeMenuOpened)
+            return;
+        UpgradeMenuBehavior.UpgradeMenuOpened = true;
         var upgradeMenu = Instantiate(upgradeMenuPrefab);
         upgradeMenu.GetComponent<UpgradeMenuBehavior>().Initialize(this);
     }
@@ -157,5 +180,14 @@ public class MissileTubeBehavior : MonoBehaviour {
         mb.Initialize(speed, accuracy, explosionSize);
 
         lastShotTime = Time.time;
+    }
+
+    void DestroyTurret() {
+        UserControls.Instance.PrimaryFire -= FireStart;
+        UserControls.Instance.PrimaryFireHeld -= FireHeld;
+        UserControls.Instance.PrimaryFire -= PlaceTurret;
+        Destroy(this.parentLauncher.gameObject);
+        Destroy(upgradeButton);
+        Destroy(healthBar);
     }
 }

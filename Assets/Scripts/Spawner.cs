@@ -53,7 +53,9 @@ public class Spawner : MonoBehaviour {
     }
 
     void SpawnEnemy() {
-        Instantiate(enemy, new Vector3(Random.Range(-20, 20), 25.0f, 0), Quaternion.identity);
+        float xMin = Settings.Instance.XPosMin;
+        float xMax = Settings.Instance.XPosMax;
+        Instantiate(enemy, new Vector3(Random.Range(xMin + 2, xMax - 2), 25.0f, 0), Quaternion.identity);
         lastSpawnTime = Time.time;
 
         ChangeEnemyCount(-1);
